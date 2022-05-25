@@ -90,6 +90,20 @@ app.get('/api/reponsesEvent/:id',function(req,res){
 
 });
 
+app.get('/api/reponsesUsers/:id',function(req,res){
+    var id = req.params.id;
+
+    res.status(200).json(metier.recupererReponsesUsers(id));
+    console.log(id);
+
+});
+app.get('/api/evenementsUsers/:id',function(req,res){
+    var id = req.params.id;
+
+    res.status(200).json(metier.recupererEvenementUsers(id));
+    console.log(id);
+
+});
 
 //Rechercher un users
 

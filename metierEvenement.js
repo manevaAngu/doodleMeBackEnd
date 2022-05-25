@@ -195,8 +195,41 @@ var recuperer= function (idEv){
 
 }
 
+var recupererReponsesUsers= function (id ){
+    var liste=[];
+    var iTableau=0;
+    var i;
 
+    for(i=0;i<listeReponses.length;i++)
+    {
 
+        if(listeReponses[i].usersRep.id==id) {
+            liste[iTableau] = getReponse(i);
+            iTableau++
+
+        }
+    }
+    return Object.values(liste);
+
+}
+
+var recupererEvenementUsers= function (id ){
+    var liste=[];
+    var iTableau=0;
+    var i;
+
+    for(i=0;i<listeEvenements.length;i++)
+    {
+        console.log("id de l'evendement"+listeEvenements[i].titre+" a un id =" + listeEvenements[i].usersOrganisateur.id + " ?=" + id);
+
+        if(listeEvenements[i].usersOrganisateur.id===id) {
+            liste[iTableau] = listeEvenements[i];
+            iTableau++
+        }
+    }
+    return Object.values(liste);
+
+}
 
 
 exports.listerReponses=listerReponses;
@@ -211,6 +244,8 @@ exports.ajouterReponse=ajouterReponse;
 exports.ajouterEvenement=ajouterEvenement;
 exports.inscrireUsers=inscrireUsers;
 exports.recuperer=recuperer;
+exports.recupererReponsesUsers=recupererReponsesUsers;
+exports.recupererEvenementUsers=recupererEvenementUsers;
 
 
 
