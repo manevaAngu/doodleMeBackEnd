@@ -105,6 +105,22 @@ app.get('/api/evenementsUsers/:id',function(req,res){
 
 });
 
+app.delete('/api/evenements/',function(req,res){
+
+    var users=req.body;
+
+    //metier
+    var objres=metier.inscrireUsers(users);
+
+    //forger résultat
+    if ((typeof objres =='undefined') || (typeof objres==={}))
+        res.status(400);
+    else
+        res.status(200).json(metier.supprimerEvenement(objres))
+
+
+});
+
 //Rechercher un users
 
 app.get('/api/users/:id',function(req,res){

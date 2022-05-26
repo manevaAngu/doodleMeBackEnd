@@ -137,6 +137,16 @@ var getEvenement=function(id){
     else return listeEvenements[id];
 }
 
+
+
+var supprimerEvenement=function(evenement){
+    var myIndex = listeEvenements.indexOf(evenement);
+
+
+        listeEvenements.splice(myIndex,1);
+
+}
+
 var getReponse=function(id){
     if (typeof listeReponses[id]=="undefined") return {};
     else return listeReponses[id];
@@ -220,11 +230,13 @@ var recupererEvenementUsers= function (id ){
 
     for(i=0;i<listeEvenements.length;i++)
     {
-        console.log("id de l'evendement"+listeEvenements[i].titre+" a un id =" + listeEvenements[i].usersOrganisateur.id + " ?=" + id);
+        //console.log("id de l'evendement"+listeEvenements[i].titre+" a un id =" + listeEvenements[i].usersOrganisateur.id + " ?=" + id);
 
-        if(listeEvenements[i].usersOrganisateur.id===id) {
+        if(listeEvenements[i].usersOrganisateur.id==id) {
             liste[iTableau] = listeEvenements[i];
             iTableau++
+            console.log(listeEvenements[i].titre +"est la");
+
         }
     }
     return Object.values(liste);
@@ -243,6 +255,8 @@ exports.getEvenement=getEvenement;
 exports.ajouterReponse=ajouterReponse;
 exports.ajouterEvenement=ajouterEvenement;
 exports.inscrireUsers=inscrireUsers;
+exports.supprimerEvenement=supprimerEvenement;
+
 exports.recuperer=recuperer;
 exports.recupererReponsesUsers=recupererReponsesUsers;
 exports.recupererEvenementUsers=recupererEvenementUsers;
