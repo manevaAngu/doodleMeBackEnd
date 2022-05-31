@@ -175,7 +175,19 @@ app.get('/api/reponses/:id',function(req,res){
     else res.status(200).json(obj);
 });
 
+//modifier un évenement
+//Rechercher un evenement
 
+app.put('/api/evenements',function(req,res){
+    //1
+    var event=req.body;
+    //
+    var obj=metier.cloturerEvenement(event);
+    //
+    if ((typeof  obj=='undefined') || (typeof obj==={}))
+        res.status(404);
+    else res.status(200).json(obj);
+});
 
 
 app.listen(3000,function(){

@@ -27,15 +27,15 @@ function Users(user){
     this.pseudo=user.pseudo;
 }
 
-function Evenement(titre,id,description,date,creneaux,userOrganisateur){
+function Evenement(titre,id,description,date,creneaux,userOrganisateur,termine,creneauFinal){
     this.titre=titre;s
     this.id=id;
     this.description=description;
     this.date=date;
     this.usersOrganisateur=usersOrganisateur;
     this.creneaux=creneaux;
-
-
+    this.termine=termine;
+   this.creneauFinal=creneauFinal;
 
 
 }
@@ -50,6 +50,8 @@ function Evenement(evenement){
     this.date=evenement.date;
     this.usersOrganisateur=evenement.usersOrganisateur;
     this.creneaux=evenement.creneaux;
+    this.termine=evenement.termine;
+    this.creneauFinal=evenement.creneauFinal;
 
 
 }
@@ -240,7 +242,54 @@ var recupererEvenementUsers= function (id ){
         }
     }
     return Object.values(liste);
+}
 
+var getmaxCreneau= function (liste , creneaux) {
+    let somme=0;
+    for (let i=0 ; i<liste.length ;i++){
+        if( liste[i].creneauChoix==creneaux){
+            somme++;
+        }
+
+    }
+
+    return somme;
+
+}
+
+
+
+var cloturerEvenement= function (event){
+
+    listeEvenements[event.id].termine=true;
+
+    var liste=[];
+    var iTableau=0;
+    for(let i=0;i<listeReponses.length;i++)
+    {
+
+        if(listeReponses[i].evenement.id==event.id) {
+            liste[iTableau] = listeReponses[i];
+            iTableau++;
+
+        }
+    }
+    var  creneau =liste[0].creneauChoix;
+
+    let max=getmaxCreneau(liste,creneau);
+    let test;
+    for (let i=1 ; i<liste.length ;i++){
+        // @ts-ignore
+        test=getmaxCreneau(liste,liste.creneauChoix);
+        // @ts-ignore
+        if (test> max){
+            max=test;
+            creneau=liste[i].creneauChoix;
+        }
+
+    }
+    listeEvenements[event.id].creneauFinal=creneau;
+    return listeEvenements[event.id];
 }
 
 
@@ -261,6 +310,7 @@ exports.recuperer=recuperer;
 exports.recupererReponsesUsers=recupererReponsesUsers;
 exports.recupererEvenementUsers=recupererEvenementUsers;
 
+exports.cloturerEvenement=cloturerEvenement;
 
 
 
