@@ -275,7 +275,6 @@ var cloturerEvenement= function (event){
     }
 
     if(liste.length>0) {
-        listeEvenements[event.id].nbParticipant=liste.length;
 
         var creneau = liste[0].creneauChoix;
 
@@ -283,6 +282,9 @@ var cloturerEvenement= function (event){
         let test;
         for (let i = 1; i < liste.length; i++) {
             // @ts-ignore
+            if(liste[i].disponibilite='Accepté')
+                listeEvenements[event.id].nbParticipant++;
+
             test = getmaxCreneau(liste, liste.creneauChoix);
             // @ts-ignore
             if (test > max) {
