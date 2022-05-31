@@ -191,8 +191,6 @@ var recuperer= function (idEv){
     var liste=[];
     var iTableau=0;
     var i;
-    console.log("ma liste reponse : "+listeReponses);
-    console.log("taille de ma liste reponse : "+listeReponses.length);
 
     for(i=0;i<listeReponses.length;i++)
     {
@@ -274,21 +272,23 @@ var cloturerEvenement= function (event){
 
         }
     }
-    var  creneau =liste[0].creneauChoix;
+        var creneau = liste[0].creneauChoix;
 
-    let max=getmaxCreneau(liste,creneau);
-    let test;
-    for (let i=1 ; i<liste.length ;i++){
-        // @ts-ignore
-        test=getmaxCreneau(liste,liste.creneauChoix);
-        // @ts-ignore
-        if (test> max){
-            max=test;
-            creneau=liste[i].creneauChoix;
+        let max = getmaxCreneau(liste, creneau);
+        let test;
+        for (let i = 1; i < liste.length; i++) {
+            // @ts-ignore
+            test = getmaxCreneau(liste, liste.creneauChoix);
+            // @ts-ignore
+            if (test > max) {
+                max = test;
+                creneau = liste[i].creneauChoix;
+            }
+
         }
+        listeEvenements[event.id].creneauFinal = creneau;
 
-    }
-    listeEvenements[event.id].creneauFinal=creneau;
+
     return listeEvenements[event.id];
 }
 
