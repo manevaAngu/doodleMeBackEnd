@@ -27,7 +27,7 @@ function Users(user){
     this.pseudo=user.pseudo;
 }
 
-function Evenement(titre,id,description,date,creneaux,userOrganisateur,termine,creneauFinal){
+function Evenement(titre,id,description,date,creneaux,userOrganisateur,termine,creneauFinal,nbParticipant){
     this.titre=titre;s
     this.id=id;
     this.description=description;
@@ -36,7 +36,7 @@ function Evenement(titre,id,description,date,creneaux,userOrganisateur,termine,c
     this.creneaux=creneaux;
     this.termine=termine;
    this.creneauFinal=creneauFinal;
-
+    this.nbParticipant=nbParticipant;
 
 }
 
@@ -52,7 +52,7 @@ function Evenement(evenement){
     this.creneaux=evenement.creneaux;
     this.termine=evenement.termine;
     this.creneauFinal=evenement.creneauFinal;
-
+  this.nbParticipant=evenement.nbParticipant;
 
 }
 
@@ -259,10 +259,11 @@ var getmaxCreneau= function (liste , creneaux) {
 
 var cloturerEvenement= function (event){
 
-    listeEvenements[event.id].termine=true;
 
     var liste=[];
     var iTableau=0;
+    listeEvenements[event.id].termine=true;
+
     for(let i=0;i<listeReponses.length;i++)
     {
 
@@ -272,6 +273,10 @@ var cloturerEvenement= function (event){
 
         }
     }
+
+    if(liste.length>0) {
+        listeEvenements[event.id].nbParticipant=liste.length;
+
         var creneau = liste[0].creneauChoix;
 
         let max = getmaxCreneau(liste, creneau);
@@ -288,7 +293,7 @@ var cloturerEvenement= function (event){
         }
         listeEvenements[event.id].creneauFinal = creneau;
 
-
+    }
     return listeEvenements[event.id];
 }
 

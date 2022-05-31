@@ -86,7 +86,7 @@ app.get('/api/reponsesEvent/:id',function(req,res){
     var id = req.params.id;
 
     res.status(200).json(metier.recuperer(id));
-    console.log(id);
+  //  console.log(id);
 
 });
 
