@@ -35,7 +35,7 @@ function Evenement(titre,id,description,date,creneaux,userOrganisateur,termine,c
     this.usersOrganisateur=usersOrganisateur;
     this.creneaux=creneaux;
     this.termine=termine;
-   this.creneauFinal=creneauFinal;
+    this.creneauFinal=creneauFinal;
     this.nbParticipant=nbParticipant;
 
 }
@@ -87,30 +87,24 @@ function Reponse(reponse){
 
 
 
-
+/*
+Ajoute un evenement à la liste
+@return Evenement
+ */
 var ajouterEvenement =function(evenement){
-    /*
-    if(typeof liste[personne.id] !='undefined') return {}
-    else{
-        liste[personne.id]= new Personne(personne);
-        return liste[personne.id];
-    }
-    */
+
     evenement.id=idEv;
     listeEvenements[idEv]=new Evenement(evenement);
     idEv++;
     return listeEvenements[evenement.id];
 
 }
-
+/*
+Ajoute une réponse à la liste
+@return Reponse
+ */
 var ajouterReponse =function(reponse){
-    /*
-    if(typeof liste[personne.id] !='undefined') return {}
-    else{
-        liste[personne.id]= new Personne(personne);
-        return liste[personne.id];
-    }
-    */
+
     reponse.id=idRep;
     listeReponses[idRep]=new Reponse(reponse);
     idRep++;
@@ -118,14 +112,12 @@ var ajouterReponse =function(reponse){
 
 }
 
+/*
+Ajoute un compte utilisateur
+@return Users
+ */
 var inscrireUsers =function(users){
-    /*
-    if(typeof liste[personne.id] !='undefined') return {}
-    else{
-        liste[personne.id]= new Personne(personne);
-        return liste[personne.id];
-    }
-    */
+
     users.id=idUsers;
     listeUsers[idUsers]=new Users(users);
     idUsers++;
@@ -133,32 +125,44 @@ var inscrireUsers =function(users){
 
 }
 
-
+/*
+@return Evenement si existe
+ */
 var getEvenement=function(id){
     if (typeof listeEvenements[id]=="undefined") return {};
     else return listeEvenements[id];
 }
 
 
-
+/*
+Supprime un évènement de la liste
+ */
 var supprimerEvenement=function(evenement){
     var myIndex = listeEvenements.indexOf(evenement);
-
 
         listeEvenements.splice(myIndex,1);
 
 }
 
+/*
+@return Reponse si existe
+ */
 var getReponse=function(id){
     if (typeof listeReponses[id]=="undefined") return {};
     else return listeReponses[id];
 }
 
+/*
+@return User si existe, en fonction de l'ID
+ */
 var getUsersId=function(id){
     if (typeof listeUsers[id]=="undefined") return {};
     else return listeUsers[id];
 }
 
+/*
+@return User si existe, en fonction du pseudo
+ */
 var getUsers=function(pseudo){
     let user=null;
         for(i=0;i<listeUsers.length;i++)
@@ -175,18 +179,31 @@ var getUsers=function(pseudo){
 
 }
 
+/*
+@return la liste de tous les Evenements
+ */
 var listerEvenements= function (){
     return Object.values(listeEvenements);
 }
+
+/*
+@return la liste de toutes les Reponses
+ */
 var listerReponses= function (){
     return Object.values(listeReponses);
 }
 
+/*
+@return la liste de tous les utilisateurs
+ */
 var listerUsers= function (){
     return Object.values(listeUsers);
 }
 
-
+/*
+Récupère la liste de toutes les réponses d'un évènement
+@return Reponses[]
+ */
 var recuperer= function (idEv){
     var liste=[];
     var iTableau=0;
@@ -205,6 +222,10 @@ var recuperer= function (idEv){
 
 }
 
+/*
+Récupère la liste des réponses pour un utilisateur donné
+@return Reponse[]
+ */
 var recupererReponsesUsers= function (id ){
     var liste=[];
     var iTableau=0;
@@ -223,6 +244,10 @@ var recupererReponsesUsers= function (id ){
 
 }
 
+/*
+Récupère la liste des évènements créés par un utilisateur donné
+@return Evenement []
+ */
 var recupererEvenementUsers= function (id ){
     var liste=[];
     var iTableau=0;
@@ -242,6 +267,10 @@ var recupererEvenementUsers= function (id ){
     return Object.values(liste);
 }
 
+/*
+Le nombre de réponses à un créneau
+@return number
+ */
 var getmaxCreneau= function (liste , creneaux) {
     let somme=0;
     for (let i=0 ; i<liste.length ;i++){
@@ -256,7 +285,10 @@ var getmaxCreneau= function (liste , creneaux) {
 }
 
 
-
+/*
+Permet de choisir le créneau avec le plus de participants qui ont accepté
+@return Evenement cloturé
+ */
 var cloturerEvenement= function (event){
 
 
