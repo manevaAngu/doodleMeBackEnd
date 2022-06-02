@@ -9,6 +9,8 @@ app.all('*', function(req, res, next) {
         "Origin, X-Requested-With, Content-Type, Accept"); res.header("Access-Control-Allow-Methods",
         "GET, POST, PUT, DELETE, OPTIONS"); next();
 });
+
+
 //inscrireUsers
 
 app.post('/api/users',function(req,res){
@@ -82,13 +84,16 @@ app.get('/api/evenements',function(req,res){
     res.status(200).json(metier.listerEvenements());
 });
 
+//lister les réponses à un éveènement
+
 app.get('/api/reponsesEvent/:id',function(req,res){
     var id = req.params.id;
 
     res.status(200).json(metier.recuperer(id));
-  //  console.log(id);
 
 });
+
+//lister les réponses d'un utilisateur
 
 app.get('/api/reponsesUsers/:id',function(req,res){
     var id = req.params.id;
@@ -97,6 +102,9 @@ app.get('/api/reponsesUsers/:id',function(req,res){
     console.log(id);
 
 });
+
+//lister les évènements créés par un utilisateur
+
 app.get('/api/evenementsUsers/:id',function(req,res){
     var id = req.params.id;
 
@@ -104,6 +112,8 @@ app.get('/api/evenementsUsers/:id',function(req,res){
     console.log(id);
 
 });
+
+//supprimer un évènement
 
 app.delete('/api/evenements/',function(req,res){
 
