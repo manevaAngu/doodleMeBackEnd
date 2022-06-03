@@ -84,7 +84,7 @@ app.get('/api/evenements',function(req,res){
     res.status(200).json(metier.listerEvenements());
 });
 
-//lister les réponses à un éveènement
+//lister les réponses à un évènement
 
 app.get('/api/reponsesEvent/:id',function(req,res){
     var id = req.params.id;
@@ -185,8 +185,7 @@ app.get('/api/reponses/:id',function(req,res){
     else res.status(200).json(obj);
 });
 
-//modifier un évenement
-//Rechercher un evenement
+//cloturer un évenement
 
 app.put('/api/evenements',function(req,res){
     //1
