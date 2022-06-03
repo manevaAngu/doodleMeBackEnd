@@ -306,13 +306,18 @@ var cloturerEvenement= function (event){
         }
     }
 
-    if(liste.length>0) {
+        listeEvenements[event.id].nbParticipant=0;
 
-        var creneau = liste[0].creneauChoix;
+        if(liste.length>0) {
 
-        let max = getmaxCreneau(liste, creneau);
-        let test;
-        for (let i = 1; i < liste.length; i++) {
+            var creneau = liste[0].creneauChoix;
+
+            let max = getmaxCreneau(liste, creneau);
+            let test;
+            if( liste[0].disponibilite='Accepté')
+                listeEvenements[event.id].nbParticipant++;
+
+            for (let i = 1; i < liste.length; i++) {
             // @ts-ignore
             if(liste[i].disponibilite='Accepté')
                 listeEvenements[event.id].nbParticipant++;
